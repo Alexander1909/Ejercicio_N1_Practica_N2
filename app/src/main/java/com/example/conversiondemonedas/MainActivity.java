@@ -1,4 +1,4 @@
-package com.example.conversormoneda;
+package com.example.conversiondemonedas;
 
 import android.os.Bundle;
 import android.view.View;
@@ -40,25 +40,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void convertir() {
-        String cantidadStr = etCantidad.getText().toString();
+        try {
+            double cantidad = Double.parseDouble(etCantidad.getText().toString());
+            int origenIndex = spOrigen.getSelectedItemPosition();
+            int destinoIndex = spDestino.getSelectedItemPosition();
 
-        if (cantidadStr.isEmpty()) {
-            tvResultado.setText("Ingrese un valor");
-            return;
+            // Convertir a USD primero, luego a la moneda destino
+            double cantidadEnUSD = cantidad / tasas[origenIndex];
+            double resultado = cantidadEnUSD * tasas[destinoIndex];
+
+            tvResultado.setText(String.format("Resultado: %.2f %s", resultado, monedas[destinoIndex]));
+        } catch (NumberFormatException e) {
+            tvResultado.setText("Ingrese una cantidad válida");
         }
-
-        double cantidad = Double.parseDouble(cantidadStr);
-
-        int posOrigen = spOrigen.getSelectedItemPosition();
-        int posDestino = spDestino.getSelectedItemPosition();
-
-        // Convertir a dólares primero
-        double enDolares = cantidad / tasas[posOrigen];
-
-        // Convertir a moneda destino
-        double resultado = enDolares * tasas[posDestino];
-
-        tvResultado.setText("Resultado: " + resultado);
     }
 }
