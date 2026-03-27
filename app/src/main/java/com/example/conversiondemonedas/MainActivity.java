@@ -40,3 +40,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void convertir() {
+        String cantidadStr = etCantidad.getText().toString();
+
+        if (cantidadStr.isEmpty()) {
+            tvResultado.setText("Ingrese un valor");
+            return;
+        }
+
+        double cantidad = Double.parseDouble(cantidadStr);
+
+        int posOrigen = spOrigen.getSelectedItemPosition();
+        int posDestino = spDestino.getSelectedItemPosition();
+
+        double enDolares = cantidad / tasas[posOrigen];
+        double resultado = enDolares * tasas[posDestino];
+
+        tvResultado.setText("Resultado: " + resultado);
+    }
+}
