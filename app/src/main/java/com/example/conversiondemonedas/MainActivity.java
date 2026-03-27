@@ -20,3 +20,45 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        etCantidad = findViewById(R.id.etCantidad);
+        spOrigen = findViewById(R.id.spMonedaOrigen);
+        spDestino = findViewById(R.id.spMonedaDestino);
+        btnConvertir = findViewById(R.id.btnConvertir);
+        tvResultado = findViewById(R.id.tvResultado);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, monedas);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spOrigen.setAdapter(adapter);
+        spDestino.setAdapter(adapter);
+
+        btnConvertir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                convertir();
+            }
+        });
+    }
+    private void convertir() {
+        String cantidadStr = etCantidad.getText().toString();
+
+        if (cantidadStr.isEmpty()) {
+            tvResultado.setText("Ingrese un valor");
+            return;
+        }
+
+        double cantidad = Double.parseDouble(cantidadStr);
+
+        int posOrigen = spOrigen.getSelectedItemPosition();
+        int posDestino = spDestino.getSelectedItemPosition();
+
+        // Convertir a dólares primero
+        double enDolares = cantidad / tasas[posOrigen];
+
+        // Convertir a moneda destino
+        double resultado = enDolares * tasas[posDestino];
+
+        tvResultado.setText("Resultado: " + resultado);
+    }
+}
