@@ -1,4 +1,4 @@
-package com.example.conversormoneda;
+package com.example.conversiondemonedas;
 
 import android.os.Bundle;
 import android.view.View;
