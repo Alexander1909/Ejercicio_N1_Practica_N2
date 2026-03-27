@@ -11,3 +11,18 @@
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Spinner
+        android:id="@+id/spMonedaOrigen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Spinner
+        android:id="@+id/spMonedaDestino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnConvertir"
+        android:text="Convertir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
