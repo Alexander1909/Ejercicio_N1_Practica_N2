@@ -11,3 +11,12 @@ public class MainActivity extends AppCompatActivity {
     Spinner spOrigen, spDestino;
     Button btnConvertir;
     TextView tvResultado;
+    String[] monedas = {"USD", "PEN", "EUR", "GBP", "INR", "BRL", "MXN", "CNY", "JPY"};
+
+    // Tasas respecto al dólar (valores aproximados)
+    double[] tasas = {1.0, 3.8, 0.92, 0.78, 83.0, 5.0, 17.0, 7.2, 150.0};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
